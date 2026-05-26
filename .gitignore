@@ -1,0 +1,4 @@
+scraped/
+assets/screenshots/
+.playwright-mcp/
+*.log
