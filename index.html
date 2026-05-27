@@ -146,33 +146,28 @@ html.lenis{height:auto}.lenis.lenis-smooth{scroll-behavior:auto!important}.lenis
   margin-bottom:1.8rem;
 }
 .hero__title em{font-family:var(--serif-i);font-style:italic;font-weight:400;color:var(--gold-soft)}
+.hero__title .char{display:inline-block;animation:heroChar 1.1s cubic-bezier(.2,.7,.2,1) both;animation-delay:calc(var(--i,0)*.08s + .2s);transform:translateY(105%)}
+@keyframes heroChar{from{transform:translateY(105%)}to{transform:translateY(0)}}
+.hero__title-mask{display:inline-block;overflow:hidden;vertical-align:bottom;line-height:.85}
 .hero__sub{font-family:var(--serif);font-weight:300;font-size:clamp(1.1rem, 2.2vw, 1.7rem);max-width:36ch;line-height:1.35;color:rgba(245,241,235,0.85);margin-bottom:2.5rem}
 .hero__sub em{font-family:var(--serif-i);color:var(--gold-soft)}
 .hero__meta{display:flex;flex-wrap:wrap;gap:1.5rem 2.2rem;font-size:.82rem;color:rgba(245,241,235,0.7)}
 .hero__meta strong{color:var(--paper);font-family:var(--serif);font-weight:500;font-size:1.05rem;font-style:italic;display:block;line-height:1}
 .hero__meta .lbl{display:block;margin-top:.35rem;font-size:.68rem;letter-spacing:0.18em;text-transform:uppercase;opacity:.65}
 
-.hero__art{position:relative;align-self:stretch;display:flex;align-items:center;justify-content:center}
-.hero__photo{
-  position:relative;width:100%;max-width:380px;aspect-ratio:3/4;
-  border-radius:2px;overflow:hidden;
-  box-shadow:0 30px 80px -20px rgba(0,0,0,.6), 0 0 0 1px rgba(184,151,90,.15);
-}
-.hero__photo img{width:100%;height:100%;object-fit:cover;filter:contrast(1.05) saturate(.85)}
-.hero__photo::after{
-  content:'';position:absolute;inset:0;border:1px solid rgba(184,151,90,.2);
-}
-.hero__photo-caption{
-  position:absolute;bottom:-2.2rem;left:0;right:0;text-align:center;
-  font-size:.7rem;letter-spacing:0.28em;text-transform:uppercase;color:var(--gold-soft);opacity:.7;
-}
-.hero__photo-mini{
-  position:absolute;width:140px;aspect-ratio:1;border-radius:2px;overflow:hidden;
-  box-shadow:0 18px 40px -10px rgba(0,0,0,.7), 0 0 0 1px rgba(184,151,90,.15);
-}
-.hero__photo-mini--tl{top:-1rem;left:-3rem;transform:rotate(-4deg)}
-.hero__photo-mini--br{bottom:-1.4rem;right:-2.4rem;transform:rotate(3deg);width:160px}
-.hero__photo-mini img{width:100%;height:100%;object-fit:cover}
+.hero__art{position:relative;align-self:stretch;display:flex;align-items:center;justify-content:center;padding:1rem 0}
+.hero__strip{display:grid;grid-template-columns:1fr;gap:1rem;width:100%;max-width:380px}
+.hero__strip-item{position:relative;overflow:hidden;border-radius:2px;box-shadow:0 18px 50px -16px rgba(0,0,0,.7),0 0 0 1px rgba(184,151,90,.12);opacity:0;animation:stripIn 1.1s cubic-bezier(.2,.7,.2,1) both}
+.hero__strip-item:nth-child(1){animation-delay:.4s;aspect-ratio:5/3}
+.hero__strip-item:nth-child(2){animation-delay:.55s;aspect-ratio:5/6;transform:translateX(2rem)}
+.hero__strip-item:nth-child(3){animation-delay:.7s;aspect-ratio:5/3;margin-left:auto;width:80%}
+.hero__strip-item img{width:100%;height:100%;object-fit:cover;filter:contrast(1.05) saturate(.9);transition:transform 1.2s cubic-bezier(.2,.7,.2,1)}
+.hero__strip-item:hover img{transform:scale(1.04)}
+.hero__strip-item::after{content:'';position:absolute;inset:0;border:1px solid rgba(184,151,90,.18);pointer-events:none}
+@keyframes stripIn{from{opacity:0;transform:translateY(40px)}to{opacity:1;transform:translateY(0)}}
+.hero__strip-item:nth-child(2){animation-name:stripIn2}
+@keyframes stripIn2{from{opacity:0;transform:translate(40px,40px)}to{opacity:1;transform:translate(2rem,0)}}
+.hero__strip-tag{position:absolute;bottom:.7rem;left:.9rem;font-family:var(--serif-i);font-style:italic;color:#fff;font-size:.78rem;letter-spacing:.04em;text-shadow:0 2px 8px rgba(0,0,0,.6);z-index:2}
 
 .hero__footer{position:relative;z-index:2;display:flex;justify-content:space-between;align-items:flex-end;padding-top:3rem;border-top:1px solid rgba(245,241,235,0.1);margin-top:auto;max-width:1400px;margin-left:auto;margin-right:auto;width:100%}
 .hero__scroll{display:inline-flex;align-items:center;gap:.7rem;font-size:.7rem;letter-spacing:0.28em;text-transform:uppercase;color:rgba(245,241,235,.55)}
@@ -237,7 +232,9 @@ html.lenis{height:auto}.lenis.lenis-smooth{scroll-behavior:auto!important}.lenis
 /* === MANIFESTO === */
 .manifesto{padding:var(--section-pad) var(--pad-x);background:var(--paper);position:relative}
 .manifesto::before{content:'';position:absolute;top:0;left:50%;width:1px;height:60px;background:var(--ink);opacity:.3}
-.manifesto__inner{max-width:980px;margin:0 auto;text-align:center}
+.manifesto__inner{max-width:980px;margin:0 auto;text-align:center;position:relative}
+.manifesto__ornament{width:60px;height:60px;margin:0 auto 2.5rem;color:var(--burgundy);opacity:.85}
+.manifesto__ornament svg{width:100%;height:100%;display:block}
 .manifesto__chapter{font-size:.72rem;letter-spacing:0.32em;text-transform:uppercase;color:var(--gold-dim);margin-bottom:3rem}
 .manifesto__chapter::before{content:'';display:inline-block;width:30px;height:1px;background:currentColor;vertical-align:middle;margin-right:1rem;opacity:.5}
 .manifesto__chapter::after{content:'';display:inline-block;width:30px;height:1px;background:currentColor;vertical-align:middle;margin-left:1rem;opacity:.5}
@@ -248,7 +245,7 @@ html.lenis{height:auto}.lenis.lenis-smooth{scroll-behavior:auto!important}.lenis
 
 /* === MASTER === */
 .master{background:var(--paper-warm);padding:var(--section-pad) var(--pad-x);overflow:hidden}
-.master__grid{display:grid;grid-template-columns:1fr 1.1fr;gap:clamp(2rem,5vw,6rem);max-width:1400px;margin:0 auto;align-items:center}
+.master__grid{display:grid;grid-template-columns:1fr 1.8fr;gap:clamp(2rem,5vw,7rem);max-width:1400px;margin:0 auto;align-items:center}
 .master__visual{position:relative;aspect-ratio:4/5;overflow:hidden;border-radius:2px;background:var(--ink)}
 .master__visual img{width:100%;height:100%;object-fit:cover;transition:transform 1.4s cubic-bezier(.2,.7,.2,1)}
 .master__visual:hover img{transform:scale(1.04)}
@@ -312,7 +309,8 @@ html.lenis{height:auto}.lenis.lenis-smooth{scroll-behavior:auto!important}.lenis
   backdrop-filter:blur(8px);
 }
 .lightbox.is-open{display:flex}
-.lightbox img{max-width:90vw;max-height:88vh;object-fit:contain;border-radius:2px;box-shadow:0 40px 100px rgba(0,0,0,.6)}
+.lightbox img{max-width:90vw;max-height:88vh;object-fit:contain;border-radius:2px;box-shadow:0 40px 100px rgba(0,0,0,.6);transition:opacity .35s ease, transform .55s cubic-bezier(.2,.7,.2,1);opacity:1}
+.lightbox img.swap{opacity:0;transform:scale(.96)}
 .lightbox__close{position:absolute;top:1.5rem;right:1.5rem;width:48px;height:48px;border:1px solid rgba(245,241,235,.3);border-radius:50%;color:var(--paper);display:grid;place-items:center;transition:background .2s, border-color .2s;font-size:1.5rem;line-height:1}
 .lightbox__close:hover{background:var(--gold);border-color:var(--gold);color:var(--ink)}
 .lightbox__nav{position:absolute;top:50%;transform:translateY(-50%);width:60px;height:60px;border:1px solid rgba(245,241,235,.25);border-radius:50%;color:var(--paper);display:grid;place-items:center;transition:background .2s, border-color .2s;font-family:var(--serif);font-size:1.6rem}
@@ -428,7 +426,13 @@ html.lenis{height:auto}.lenis.lenis-smooth{scroll-behavior:auto!important}.lenis
 .btn:hover{background:var(--gold-soft);transform:translateY(-2px);box-shadow:0 20px 50px -10px rgba(184,151,90,.6)}
 .btn--ghost{background:transparent;color:var(--paper);border:1px solid rgba(245,241,235,.3);box-shadow:none}
 .btn--ghost:hover{background:rgba(245,241,235,.06);border-color:var(--paper);transform:translateY(-2px)}
-.btn svg{width:16px;height:16px}
+.btn--whatsapp{background:#25D366;color:#fff;box-shadow:0 14px 40px -10px rgba(37,211,102,.5)}
+.btn--whatsapp:hover{background:#1ebd5a;box-shadow:0 20px 50px -10px rgba(37,211,102,.6)}
+.btn--telegram{background:#2AABEE;color:#fff;box-shadow:0 14px 40px -10px rgba(42,171,238,.5)}
+.btn--telegram:hover{background:#1996d6;box-shadow:0 20px 50px -10px rgba(42,171,238,.6)}
+.btn svg{width:18px;height:18px}
+.contact__cta{flex-direction:row;flex-wrap:wrap;justify-content:center;gap:1rem}
+@media (max-width:640px){.contact__cta{flex-direction:column;width:100%}.contact__cta .btn{width:100%;justify-content:center}}
 
 /* === FOOTER === */
 .footer{
@@ -480,7 +484,7 @@ a:focus-visible, button:focus-visible{outline:2px solid var(--gold);outline-offs
     <a href="#services">Цены</a>
     <a href="#contact">Контакты</a>
   </div>
-  <a href="tel:+79601808957" class="nav__cta">Записаться</a>
+  <a href="https://wa.me/79601808957?text=Здравствуйте,%20хочу%20записаться%20на%20консультацию" class="nav__cta">Записаться</a>
 </nav>
 
 <main>
@@ -491,10 +495,10 @@ a:focus-visible, button:focus-visible{outline:2px solid var(--gold);outline-offs
   <div class="hero__inner">
     <div class="hero__copy">
       <div class="hero__eyebrow reveal"><span class="dot"></span><span>Tattoo atelier · Нижний Новгород</span></div>
-      <h1 class="hero__title">
-        <span class="line-mask"><span>July</span></span>
+      <h1 class="hero__title" aria-label="July">
+        <span class="hero__title-mask" aria-hidden="true"><span class="char" style="--i:0">J</span><span class="char" style="--i:1">u</span><span class="char" style="--i:2">l</span><span class="char" style="--i:3">y</span></span>
       </h1>
-      <p class="hero__sub reveal">Авторские татуировки от <em>мастера&nbsp;Юлии</em>.<br>Семь лет тишины, иглы и&nbsp;линии&nbsp;— <em>превращаются в вашу историю на коже</em>.</p>
+      <p class="hero__sub reveal">Авторские татуировки от <em>мастера&nbsp;Юлии</em>.<br><em>Семь лет</em> тишины, иглы и&nbsp;линии — превращаются в вашу историю на коже.</p>
       <div class="hero__meta reveal">
         <div><strong>5,0 ★</strong><span class="lbl">62 отзыва · Яндекс</span></div>
         <div><strong>7+ лет</strong><span class="lbl">опыт мастера</span></div>
@@ -502,15 +506,10 @@ a:focus-visible, button:focus-visible{outline:2px solid var(--gold);outline-offs
       </div>
     </div>
     <div class="hero__art">
-      <div class="hero__photo">
-        <div class="hero__photo-mini hero__photo-mini--tl">
-          <img src="https://avatars.mds.yandex.net/get-altay/16410529/2a00000199bf9146ea31dfb6a80f01515e11/L_height" alt="Tattoo work" >
-        </div>
-        <img src="https://avatars.mds.yandex.net/get-altay/14837019/2a000001970b93141104be8d8e65c9ddc67c/XXXL" alt="Signature tattoo by Julia">
-        <div class="hero__photo-mini hero__photo-mini--br">
-          <img src="https://avatars.mds.yandex.net/get-altay/16866637/2a00000199be2f6b4939c073026a1f653299/L_height" alt="Tattoo detail" >
-        </div>
-        <div class="hero__photo-caption">— signature work, 2025</div>
+      <div class="hero__strip">
+        <div class="hero__strip-item"><img src="https://avatars.mds.yandex.net/get-altay/15343885/2a00000197abdc548b4bb974459fca9f3e83/XXXL" alt="Botanical tattoo"></div>
+        <div class="hero__strip-item"><img src="https://avatars.mds.yandex.net/get-altay/14910910/2a00000197b0b2af571df0d3f791c8c5ddee/XXXL" alt="Shoulder peony"><div class="hero__strip-tag">— signature, 2025</div></div>
+        <div class="hero__strip-item"><img src="https://avatars.mds.yandex.net/get-altay/16329823/2a00000197b0740bd3a8af5870421bc0f81e/XXXL" alt="Fine line work"></div>
       </div>
     </div>
   </div>
@@ -541,6 +540,15 @@ a:focus-visible, button:focus-visible{outline:2px solid var(--gold);outline-offs
 <!-- MANIFESTO -->
 <section class="manifesto" id="manifesto">
   <div class="manifesto__inner">
+    <div class="manifesto__ornament reveal" aria-hidden="true">
+      <svg viewBox="0 0 60 60" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round">
+        <path d="M30 12c-3 4-3 8 0 12 3-4 3-8 0-12z" fill="currentColor" fill-opacity=".12"/>
+        <path d="M30 16c-2 0-4 1-5 3-1 2 0 5 2 6 1-2 2-4 3-5 1 1 2 3 3 5 2-1 3-4 2-6-1-2-3-3-5-3z"/>
+        <path d="M22 28c-3 1-5 4-5 7 0 3 2 5 5 5 0-3 1-6 3-8M38 28c3 1 5 4 5 7 0 3-2 5-5 5 0-3-1-6-3-8"/>
+        <path d="M30 40c-2 3-4 6-4 10M30 40c2 3 4 6 4 10"/>
+        <path d="M30 28v22" stroke-opacity=".5"/>
+      </svg>
+    </div>
     <div class="manifesto__chapter">Манифест · 2026</div>
     <p class="manifesto__text" data-split>
       Татуировка — это не картинка. Это <em>разговор</em>, который остаётся с вами навсегда. Я делаю работы, которые <em>звучат тихо</em> — и потому слышны годами.
@@ -619,9 +627,16 @@ a:focus-visible, button:focus-visible{outline:2px solid var(--gold);outline-offs
     <div class="gallery__item gallery__item--w4 gallery__item--tall"><img src="https://avatars.mds.yandex.net/get-altay/15381861/2a00000197eb637184cb1fddf561b4e1cd2a/XXXL" alt="" ></div>
     <div class="gallery__item gallery__item--w3 gallery__item--med"><img src="https://avatars.mds.yandex.net/get-altay/16418365/2a00000198c104fd6cf4591f742401e76cab/XXXL" alt="" ></div>
 
-    <div class="gallery__item gallery__item--w4 gallery__item--med"><img src="https://avatars.mds.yandex.net/get-altay/15438512/2a00000197b073ee3b454afbfe4c62abf267/XXXL" alt="" ></div>
-    <div class="gallery__item gallery__item--w4 gallery__item--med"><img src="https://avatars.mds.yandex.net/get-altay/16965486/2a00000197b073c3dfaa48d9429125984003/XXXL" alt="" ></div>
-    <div class="gallery__item gallery__item--w4 gallery__item--med"><img src="https://avatars.mds.yandex.net/get-altay/15993332/2a00000197eb631d470f226c92337442f9fd/XXXL" alt="" ></div>
+    <div class="gallery__item gallery__item--w6 gallery__item--xl"><img src="https://avatars.mds.yandex.net/get-altay/15438512/2a00000197b073ee3b454afbfe4c62abf267/XXXL" alt=""></div>
+    <div class="gallery__item gallery__item--w3 gallery__item--xl"><img src="https://avatars.mds.yandex.net/get-altay/16965486/2a00000197b073c3dfaa48d9429125984003/XXXL" alt=""></div>
+    <div class="gallery__item gallery__item--w3 gallery__item--med"><img src="https://avatars.mds.yandex.net/get-altay/15993332/2a00000197eb631d470f226c92337442f9fd/XXXL" alt=""></div>
+  </div>
+
+  <div style="max-width:1400px;margin:3rem auto 0;text-align:center">
+    <a href="https://yandex.ru/maps/-/CPDGYO-h" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:.7rem;font-family:var(--serif-i);font-style:italic;color:var(--gold-soft);font-size:1.15rem;border-bottom:1px solid rgba(184,151,90,.3);padding-bottom:.4rem;transition:color .25s,border-color .25s">
+      Все 178 фото на Яндекс.Картах
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M17 7H8M17 7v9"/></svg>
+    </a>
   </div>
 </section>
 
@@ -636,7 +651,14 @@ a:focus-visible, button:focus-visible{outline:2px solid var(--gold);outline-offs
     <div class="reviews__rating">
       <strong>5,0</strong>
       <div class="stars">★ ★ ★ ★ ★</div>
-      <div>62 оценки на Яндекс.Картах</div>
+      <div style="display:flex;align-items:center;gap:.5rem;justify-content:flex-end;margin-top:.5rem">
+        <svg width="18" height="18" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="11" fill="#FC3F1D"/><path d="M13.5 19V5h-2.8c-2.9 0-4.9 1.9-4.9 4.6 0 2 1 3.4 2.6 4.2L5.5 19h2.7l3-5.5h1.1V19h1.2zm-2.5-6.2c-1.6 0-2.4-1-2.4-2.6 0-1.7.9-2.6 2.5-2.6h1.1v5.2H11z" fill="#fff"/></svg>
+        62 оценки на Яндекс.Картах
+      </div>
+      <a href="https://yandex.ru/maps/-/CPDGYO-h" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:.5rem;margin-top:.9rem;font-family:var(--sans);font-size:.74rem;letter-spacing:.18em;text-transform:uppercase;color:var(--burgundy);border-bottom:1px solid rgba(107,44,44,.3);padding-bottom:.3rem;font-style:normal">
+        Все 52 отзыва
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M7 17L17 7M17 7H8M17 7v9"/></svg>
+      </a>
     </div>
   </div>
 
@@ -771,11 +793,11 @@ a:focus-visible, button:focus-visible{outline:2px solid var(--gold);outline-offs
       <h2>Тёплая студия, в&nbsp;которой <em>не страшно</em></h2>
       <p>Светлая, чистая, со своим характером. Здесь можно бояться, передумывать, плакать, смеяться. Я делаю всё, чтобы за час-два в кресле вам было максимально комфортно.</p>
       <ul class="studio__list">
-        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 13l4 4L19 7"/></svg>Чай, кофе, вода и конфеты</li>
-        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 13l4 4L19 7"/></svg>Одноразовые тапочки и стерильные инструменты</li>
-        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 13l4 4L19 7"/></svg>Свой плейлист — или ставим мой</li>
-        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 13l4 4L19 7"/></svg>С&nbsp;собакой можно — у&nbsp;нас правда</li>
-        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 13l4 4L19 7"/></svg>350&nbsp;м от метро Канавинская</li>
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M5 9h12v6c0 1.5-1 3-3 3H8c-1.5 0-3-1-3-3V9z"/><path d="M17 11h2c1 0 2 1 2 2s-1 2-2 2h-2"/><path d="M9 4v2M12 3v3M15 4v2" stroke-opacity=".6"/></svg>Чай, кофе, вода и&nbsp;конфеты</li>
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M8 12l3 3 5-6"/></svg>Одноразовые тапочки и&nbsp;стерильные инструменты</li>
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18V6l11-2v12"/><circle cx="6" cy="18" r="3"/><circle cx="17" cy="16" r="3"/></svg>Свой плейлист — или ставим мой</li>
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="6" cy="9" r="1.6"/><circle cx="10" cy="6" r="1.6"/><circle cx="14" cy="6" r="1.6"/><circle cx="18" cy="9" r="1.6"/><path d="M8 16c0-2 2-4 4-4s4 2 4 4-2 3-4 3-4-1-4-3z"/></svg>С&nbsp;собакой можно — у&nbsp;нас правда</li>
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="4" width="14" height="14" rx="3"/><circle cx="9" cy="13" r="1.3"/><circle cx="15" cy="13" r="1.3"/><path d="M7 18l-2 3M17 18l2 3"/><path d="M8 8h8"/></svg>350&nbsp;м от&nbsp;метро Канавинская</li>
       </ul>
     </div>
   </div>
@@ -791,9 +813,9 @@ a:focus-visible, button:focus-visible{outline:2px solid var(--gold);outline-offs
     </div>
 
     <div class="contact__grid">
-      <a class="contact__card" href="tel:+79601808957">
-        <div class="lbl">Телефон / WhatsApp</div>
-        <div class="val">+7 960 <em>180-89-57</em></div>
+      <a class="contact__card" href="https://t.me/jullinds" target="_blank" rel="noopener">
+        <div class="lbl">Telegram · WhatsApp</div>
+        <div class="val"><em>@jullinds</em><br><span style="font-size:.9rem;color:rgba(245,241,235,.7)">+7 960 180-89-57</span></div>
         <div class="sub">Юлия ответит в рабочее время</div>
       </a>
       <a class="contact__card" href="https://yandex.ru/maps/-/CPDGYO-h" target="_blank" rel="noopener">
@@ -814,13 +836,21 @@ a:focus-visible, button:focus-visible{outline:2px solid var(--gold);outline-offs
     </div>
 
     <div class="contact__cta">
-      <a class="btn" href="tel:+79601808957">
-        Записаться по телефону
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+      <a class="btn btn--whatsapp" href="https://wa.me/79601808957?text=Здравствуйте,%20хочу%20записаться%20на%20консультацию">
+        <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.6 14.3c-.3-.1-1.6-.8-1.9-.9-.3-.1-.4-.1-.6.1-.2.3-.7.9-.9 1.1-.2.2-.3.2-.6.1-.3-.1-1.2-.4-2.3-1.4-.8-.8-1.4-1.7-1.6-2-.2-.3 0-.5.1-.6.1-.1.3-.3.4-.5.1-.2.2-.3.3-.5.1-.2 0-.4 0-.5-.1-.1-.6-1.5-.9-2.1-.2-.5-.5-.5-.6-.5h-.5c-.2 0-.5.1-.7.3-.2.3-1 1-1 2.4 0 1.4 1 2.7 1.2 2.9.2.2 2.1 3.2 5 4.5.7.3 1.3.5 1.7.6.7.2 1.4.2 1.9.1.6-.1 1.6-.7 1.8-1.3.2-.6.2-1.1.2-1.2 0-.1-.3-.2-.6-.3z"/><path d="M12 1.7C6.3 1.7 1.7 6.3 1.7 12c0 1.8.5 3.6 1.4 5.1L1.7 22.3l5.4-1.4c1.5.8 3.1 1.3 4.9 1.3 5.7 0 10.3-4.6 10.3-10.3S17.7 1.7 12 1.7zm0 18.8c-1.6 0-3.2-.5-4.5-1.3l-.3-.2-3.3.9.9-3.2-.2-.3c-.9-1.4-1.4-3-1.4-4.7 0-4.7 3.9-8.6 8.6-8.6 4.7 0 8.6 3.9 8.6 8.6.1 4.8-3.8 8.8-8.4 8.8z"/></svg>
+        WhatsApp
+      </a>
+      <a class="btn btn--telegram" href="https://t.me/jullinds" target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 0C5.4 0 0 5.4 0 12s5.4 12 12 12 12-5.4 12-12S18.6 0 12 0zm5.6 8.2l-1.9 8.9c-.1.6-.5.8-1 .5l-2.8-2.1-1.4 1.3c-.2.2-.3.3-.6.3l.2-2.9 5.3-4.8c.2-.2 0-.3-.3-.1l-6.6 4.1-2.8-.9c-.6-.2-.6-.6.1-.9l11-4.2c.5-.2 1 .1.8.8z"/></svg>
+        Telegram
+      </a>
+      <a class="btn btn--ghost" href="tel:+79601808957">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.37 1.9.72 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.35 1.85.59 2.81.72A2 2 0 0 1 22 16.92z"/></svg>
+        Позвонить
       </a>
       <a class="btn btn--ghost" href="https://yandex.ru/maps/-/CPDGYO-h" target="_blank" rel="noopener">
-        Построить маршрут на Яндекс.Картах
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M17 7H8M17 7v9"/></svg>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z"/><circle cx="12" cy="9" r="2.5"/></svg>
+        Маршрут
       </a>
     </div>
   </div>
@@ -950,10 +980,18 @@ const lbImg = document.getElementById('lb-img');
 const lbCounter = document.getElementById('lb-counter');
 const photoUrls = Array.from(gallery.querySelectorAll('img')).map(i => i.src);
 let lbIdx = 0;
+function setLBImg(i){
+  lbImg.classList.add('swap');
+  setTimeout(() => {
+    lbImg.src = photoUrls[i];
+    lbCounter.textContent = `${i+1} / ${photoUrls.length}`;
+    requestAnimationFrame(() => lbImg.classList.remove('swap'));
+  }, 180);
+}
 function openLB(i){ lbIdx = i; lbImg.src = photoUrls[i]; lbCounter.textContent = `${i+1} / ${photoUrls.length}`; lb.classList.add('is-open'); lenis.stop(); document.body.style.overflow='hidden'; }
 function closeLB(){ lb.classList.remove('is-open'); lenis.start(); document.body.style.overflow=''; }
-function nextLB(){ lbIdx = (lbIdx + 1) % photoUrls.length; lbImg.src = photoUrls[lbIdx]; lbCounter.textContent = `${lbIdx+1} / ${photoUrls.length}`; }
-function prevLB(){ lbIdx = (lbIdx - 1 + photoUrls.length) % photoUrls.length; lbImg.src = photoUrls[lbIdx]; lbCounter.textContent = `${lbIdx+1} / ${photoUrls.length}`; }
+function nextLB(){ lbIdx = (lbIdx + 1) % photoUrls.length; setLBImg(lbIdx); }
+function prevLB(){ lbIdx = (lbIdx - 1 + photoUrls.length) % photoUrls.length; setLBImg(lbIdx); }
 gallery.querySelectorAll('.gallery__item').forEach((el, i) => el.addEventListener('click', () => openLB(i)));
 lb.querySelector('.lightbox__close').addEventListener('click', closeLB);
 lb.querySelector('.lightbox__nav--next').addEventListener('click', nextLB);
